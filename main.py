@@ -30,8 +30,20 @@ async def answer(ctx, n):
     else:
         await ctx.send('Nahhh...., You wrong!!!')
 
+@bot.command()
+async def coins(ctx):
+    await ctx.send("Guess a side coins between tails or heads.")
+@bot.command()
+async def coinside(ctx, ans):
+    side = ["tails","head"]
+    m = (random.choice(side))
+    if ans == m:
+        await ctx.send('Nice guessing!!!')
+        await ctx.send('the coins side is', m)
+    else:
+        await ctx.send('Nahhh...., You wrong!!!')
+        await ctx.send('the true coins side is', m)
 
-            
 bot.run("Rahasia Dong")
 
 
