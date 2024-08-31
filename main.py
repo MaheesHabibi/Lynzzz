@@ -1,5 +1,7 @@
 import discord
 import random
+import os
+import requests
 from discord.ext import commands
 
 intents = discord.Intents.default()
@@ -43,6 +45,42 @@ async def coinside(ctx, ans):
     else:
         await ctx.send('Nahhh...., You wrong!!!')
         await ctx.send('the true coins side is', m)
+
+@bot.command()
+async def meme(ctx):
+    images = os.listdir('images')
+    with open('images/'+random.choice(images), 'rb') as f:
+        # Mari simpan file perpustakaan/library Discord yang dikonversi dalam variabel ini!
+        picture = discord.File(f)
+   # Kita kemudian dapat mengirim file ini sebagai tolok ukur!
+    await ctx.send(file=picture)
+
+def get_duck_image_url():    
+    url = 'https://random-d.uk/api/random'
+    res = requests.get(url)
+    data = res.json()
+    return data['url']
+
+@bot.command('duck')
+async def duck(ctx):
+    '''Setelah kita memanggil perintah bebek (duck), program akan memanggil fungsi get_duck_image_url'''
+    image_url = get_duck_image_url()
+    await ctx.send(image_url)
+
+@bot.command()
+async def Joke_Gelap(ctx):
+    await ctx.send("Negara apa yang gampang kalah dalam permainan catur??")
+    
+@bot.command()
+async def Jawab(ctx, jawab):
+    if jawab == 'UK':
+        await ctx.send("Selamat Kamu Benar!!!")
+        await ctx.send("Karena ratunya mati awokawok")
+    else:
+        await ctx.send("Salah Nyet!!!....")
+        await ctx.send("Yang bener UK!!!....")
+        await ctx.send("Karena ratunya mati :)")
+
 
 bot.run("Rahasia Dong")
 
